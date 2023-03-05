@@ -2,6 +2,9 @@
 
 namespace ConsoleAppPatterns.Creational;
 
+/// <summary>
+/// Client.
+/// </summary>
 public class AbstractFactoryPattern
 {
 	public void Main()
@@ -20,7 +23,7 @@ public class AbstractFactoryPattern
 }
 
 /// <summary>
-/// AbstractFactory
+/// Abstract factory.
 /// </summary>
 public interface IFactory
 {
