@@ -15,10 +15,8 @@ public class FactoryMethodPattern
 		PrintDocument(new Book());
 	}
 
-	public void PrintDocument(Document document)
-	{
+	public void PrintDocument(Document document) =>
 		Console.WriteLine(document.GetDocumentContent());
-	}
 }
 
 /// <summary>
@@ -103,11 +101,10 @@ public abstract class Document
 	}
 }
 
-
 public class Book : Document
 {
-	public override List<IPage> CreateDocumentPages() => new List<IPage>
-		{
+	public override List<IPage> CreateDocumentPages() => new()
+	{
 			new Content(),
 			new Introduction(),
 			new ParagraphOne(),
@@ -120,8 +117,8 @@ public class Book : Document
 
 public class Resume : Document
 {
-	public override List<IPage> CreateDocumentPages() => new List<IPage>
-		{
+	public override List<IPage> CreateDocumentPages() => new()
+	{
 			new Skills(),
 			new Education(),
 			new Summary()

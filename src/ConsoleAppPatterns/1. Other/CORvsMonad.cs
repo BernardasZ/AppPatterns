@@ -20,16 +20,13 @@ public class ChainOfResponsibility
 
 public abstract class Handler<T>
 {
-	protected Handler<T> _successor;
+	protected Handler<T> Successor;
 
-	public void SetSuccessor(Handler<T> successor)
-	{
-		_successor = successor;
-	}
+	public void SetSuccessor(Handler<T> successor) => Successor = successor;
 
 	public OperationResponse<T> PassToOtherHandler(OperationResponse<T> request) =>
-		_successor != null && request.Status == ResponseStatus.Success
-			? _successor.HandleRequest(request)
+		Successor != null && request.Status == ResponseStatus.Success
+			? Successor.HandleRequest(request)
 			: request;
 
 	public abstract OperationResponse<T> HandleRequest(OperationResponse<T> request);
@@ -67,10 +64,7 @@ public class ChangeCatName : Handler<Cat>
 {
 	private readonly string _name;
 
-	public ChangeCatName(string name)
-	{
-		_name = name;
-	}
+	public ChangeCatName(string name) => _name = name;
 
 	public override OperationResponse<Cat> HandleRequest(OperationResponse<Cat> request)
 	{

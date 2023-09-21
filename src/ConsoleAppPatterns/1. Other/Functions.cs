@@ -1,8 +1,8 @@
-﻿using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Running;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Running;
 
 namespace ConsoleAppPatterns._1._Other;
 
@@ -27,10 +27,7 @@ public class Test
 
 	private static readonly Cat2 _cat;
 
-	static Test()
-	{
-		_cat = new Cat2();
-	}
+	static Test() => _cat = new Cat2();
 
 	public Test()
 	{
@@ -70,10 +67,7 @@ public class CatService : IService<Cat2>
 {
 	private readonly IRepository<Cat2> _repository;
 
-	public CatService(IRepository<Cat2> repository)
-	{
-		_repository = repository;
-	}
+	public CatService(IRepository<Cat2> repository) => _repository = repository;
 
 	public async Task<GenericResponse<Cat2>> CreateAsync(Cat2 item) => await _repository.CreateAsync(item);
 
@@ -111,10 +105,7 @@ public class Service<TModel> : IService<TModel> where TModel : Animal, new()
 {
 	private readonly IRepository<TModel> _repository;
 
-	public Service(IRepository<TModel> repository)
-	{
-		_repository = repository;
-	}
+	public Service(IRepository<TModel> repository) => _repository = repository;
 
 	public virtual async Task<GenericResponse<TModel>> CreateAsync(TModel item) => await WrapperAsync(() => _repository.UpdateAsync(item));
 
@@ -182,8 +173,8 @@ public interface IRepository<TModel> where TModel : Animal
 
 public class Repository<TModel> : IRepository<TModel> where TModel : Animal
 {
-	private static GenericResponse<IEnumerable<TModel>> _genericIenumerableResponse;
-	private static GenericResponse<TModel> _genericResponse;
+	private static readonly GenericResponse<IEnumerable<TModel>> _genericIenumerableResponse;
+	private static readonly GenericResponse<TModel> _genericResponse;
 
 	static Repository()
 	{

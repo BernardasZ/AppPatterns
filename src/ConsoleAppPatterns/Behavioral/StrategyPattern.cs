@@ -25,12 +25,9 @@ public class StrategyPattern
 
 	public class Context
 	{
-		private IStrategy _strategy;
+		private readonly IStrategy _strategy;
 
-		public Context(IStrategy strategy)
-		{
-			_strategy = strategy;
-		}
+		public Context(IStrategy strategy) => _strategy = strategy;
 
 		public void Execute() => _strategy.DoSomething();
 	}

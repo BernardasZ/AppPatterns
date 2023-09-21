@@ -1,18 +1,18 @@
-﻿using ConsoleAppPatterns.Creational;
-using ConsoleAppPatterns.Structural;
-using System;
+﻿using BenchmarkDotNet.Running;
+using ConsoleAppPatterns._2._Experimental;
 
-namespace ConsoleAppPatterns
+namespace ConsoleAppPatterns;
+
+internal class Program
 {
-	internal class Program
+	private static void Main(string[] args)
 	{
-		private static void Main(string[] args)
-		{
-			var factoryMethod = new BridgePattern();
+		//var factoryMethod = new BridgePattern();
 
-			factoryMethod.Main();
+		//factoryMethod.Main();
 
-			Console.ReadLine();
-		}
+		//Console.ReadLine();
 	}
+
+	private void RunBenchmark() => BenchmarkRunner.Run(typeof(Delegates));
 }
