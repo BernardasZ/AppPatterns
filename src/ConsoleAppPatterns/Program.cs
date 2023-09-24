@@ -12,7 +12,9 @@ internal class Program
 		//factoryMethod.Main();
 
 		//Console.ReadLine();
+
+		RunBenchmark();
 	}
 
-	private void RunBenchmark() => BenchmarkRunner.Run(typeof(Delegates));
+	private static void RunBenchmark() => BenchmarkRunner.Run(typeof(Delegates));
 }
