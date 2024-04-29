@@ -2,7 +2,7 @@
 
 namespace ConsoleAppPatterns.Behavioral;
 
-public class StrategyPattern
+public class Strategy
 {
 	public void Main()
 	{
@@ -27,23 +27,38 @@ public class StrategyPattern
 	{
 		private readonly IStrategy _strategy;
 
-		public Context(IStrategy strategy) => _strategy = strategy;
+		public Context(IStrategy strategy)
+		{
+			_strategy = strategy;
+		}
 
-		public void Execute() => _strategy.DoSomething();
+		public void Execute()
+		{
+			_strategy.DoSomething();
+		}
 	}
 
 	public class ConcreteStrategyA : IStrategy
 	{
-		public void DoSomething() => Console.WriteLine(nameof(ConcreteStrategyA));
+		public void DoSomething()
+		{
+			Console.WriteLine(nameof(ConcreteStrategyA));
+		}
 	}
 
 	public class ConcreteStrategyB : IStrategy
 	{
-		public void DoSomething() => Console.WriteLine(nameof(ConcreteStrategyB));
+		public void DoSomething()
+		{
+			Console.WriteLine(nameof(ConcreteStrategyB));
+		}
 	}
 
 	public class ConcreteStrategyC : IStrategy
 	{
-		public void DoSomething() => Console.WriteLine(nameof(ConcreteStrategyC));
+		public void DoSomething()
+		{
+			Console.WriteLine(nameof(ConcreteStrategyC));
+		}
 	}
 }

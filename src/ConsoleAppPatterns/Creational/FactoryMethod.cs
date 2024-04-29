@@ -7,7 +7,7 @@ namespace ConsoleAppPatterns.Creational;
 /// <summary>
 /// Client.
 /// </summary>
-public class FactoryMethodPattern
+public class FactoryMethod
 {
 	public void Main()
 	{
@@ -15,8 +15,10 @@ public class FactoryMethodPattern
 		PrintDocument(new Book());
 	}
 
-	public void PrintDocument(Document document) =>
+	public void PrintDocument(Document document)
+	{
 		Console.WriteLine(document.GetDocumentContent());
+	}
 }
 
 /// <summary>
@@ -29,37 +31,58 @@ public interface IPage
 
 public class Skills : IPage
 {
-	public string GetPageContent() => nameof(Skills);
+	public string GetPageContent()
+	{
+		return nameof(Skills);
+	}
 }
 
 public class Education : IPage
 {
-	public string GetPageContent() => nameof(Education);
+	public string GetPageContent()
+	{
+		return nameof(Education);
+	}
 }
 
 public class Content : IPage
 {
-	public string GetPageContent() => nameof(Content);
+	public string GetPageContent()
+	{
+		return nameof(Content);
+	}
 }
 
 public class Introduction : IPage
 {
-	public string GetPageContent() => nameof(Introduction);
+	public string GetPageContent()
+	{
+		return nameof(Introduction);
+	}
 }
 
 public class ParagraphOne : IPage
 {
-	public string GetPageContent() => nameof(ParagraphOne);
+	public string GetPageContent()
+	{
+		return nameof(ParagraphOne);
+	}
 }
 
 public class Ending : IPage
 {
-	public string GetPageContent() => nameof(Ending);
+	public string GetPageContent()
+	{
+		return nameof(Ending);
+	}
 }
 
 public class Summary : IPage
 {
-	public string GetPageContent() => nameof(Summary);
+	public string GetPageContent()
+	{
+		return nameof(Summary);
+	}
 }
 
 /// <summary>
@@ -103,26 +126,38 @@ public abstract class Document
 
 public class Book : Document
 {
-	public override List<IPage> CreateDocumentPages() => new()
+	public override List<IPage> CreateDocumentPages()
 	{
+		return new()
+		{
 			new Content(),
 			new Introduction(),
 			new ParagraphOne(),
 			new Ending(),
 			new Summary()
 		};
+	}
 
-	public override string GetName() => nameof(Book);
+	public override string GetName()
+	{
+		return nameof(Book);
+	}
 }
 
 public class Resume : Document
 {
-	public override List<IPage> CreateDocumentPages() => new()
+	public override List<IPage> CreateDocumentPages()
 	{
+		return new()
+		{
 			new Skills(),
 			new Education(),
 			new Summary()
 		};
+	}
 
-	public override string GetName() => nameof(Resume);
+	public override string GetName()
+	{
+		return nameof(Resume);
+	}
 }

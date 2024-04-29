@@ -16,5 +16,8 @@ internal class Program
 		RunBenchmark();
 	}
 
-	private static void RunBenchmark() => BenchmarkRunner.Run(typeof(Delegates));
+	private static void RunBenchmark()
+	{
+		BenchmarkRunner.Run(typeof(Delegates));
+	}
 }

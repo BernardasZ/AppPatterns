@@ -2,7 +2,7 @@
 
 namespace ConsoleAppPatterns.Structural;
 
-public class BridgePattern
+public class Bridge
 {
 	public void Main()
 	{
@@ -35,21 +35,33 @@ public class BridgePattern
 
 	public class AbstractionA : RefinedAbstraction
 	{
-		public override void Execute() => Implementator.Execute("Bridge example A");
+		public override void Execute()
+		{
+			Implementator.Execute("Bridge example A");
+		}
 	}
 
 	public class AbstractionB : RefinedAbstraction
 	{
-		public override void Execute() => Implementator.Execute("Bridge example B");
+		public override void Execute()
+		{
+			Implementator.Execute("Bridge example B");
+		}
 	}
 
 	public class ConcreteImplementatornA : IImplementator
 	{
-		public void Execute(string text) => Console.WriteLine($"{text} component implementation A");
+		public void Execute(string text)
+		{
+			Console.WriteLine($"{text} component implementation A");
+		}
 	}
 
 	public class ConcreteImplementatornB : IImplementator
 	{
-		public void Execute(string text) => Console.WriteLine($"{text} component implementation B");
+		public void Execute(string text)
+		{
+			Console.WriteLine($"{text} component implementation B");
+		}
 	}
 }

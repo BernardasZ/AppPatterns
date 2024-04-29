@@ -17,25 +17,37 @@ public class MonadPattern
 			.Bind(order => order.Shipper);
 	}
 
-	public City NextTalkCity(Speaker speaker) => speaker
-		?.NextTalk()
-		?.GetConference()
-		?.GetCity();
+	public City NextTalkCity(Speaker speaker)
+	{
+		return speaker
+			?.NextTalk()
+			?.GetConference()
+			?.GetCity();
+	}
 }
 
 public class Speaker
 {
-	public Talk NextTalk() => new();
+	public Talk NextTalk()
+	{
+		return new();
+	}
 }
 
 public class Talk
 {
-	public Conference GetConference() => new();
+	public Conference GetConference()
+	{
+		return new();
+	}
 }
 
 public class Conference
 {
-	public City GetCity() => new();
+	public City GetCity()
+	{
+		return new();
+	}
 }
 
 public class City
@@ -47,18 +59,27 @@ public class Maybe<T>
 {
 	private readonly T _value;
 
-	public Maybe(T someValue) => _value = someValue ?? throw new ArgumentNullException(nameof(someValue));
+	public Maybe(T someValue)
+	{
+		_value = someValue ?? throw new ArgumentNullException(nameof(someValue));
+	}
 
 	private Maybe()
 	{
 	}
 
 	public Maybe<U> Bind<U>(Func<T, Maybe<U>> func)
-		where U : class => _value != null
+		where U : class
+	{
+		return _value != null
 			? func(_value)
 			: Maybe<U>.None();
+	}
 
-	public static Maybe<T> None() => new();
+	public static Maybe<T> None()
+	{
+		return new();
+	}
 }
 
 public interface IRepository
@@ -72,11 +93,20 @@ public interface IRepository
 
 public class Repository : IRepository
 {
-	public Maybe<Address> GetAddress() => new(new Address());
+	public Maybe<Address> GetAddress()
+	{
+		return new(new Address());
+	}
 
-	public Maybe<Customer> GetCustomer() => new(new Customer());
+	public Maybe<Customer> GetCustomer()
+	{
+		return new(new Customer());
+	}
 
-	public Maybe<Order> GetOrder() => new(new Order());
+	public Maybe<Order> GetOrder()
+	{
+		return new(new Order());
+	}
 }
 
 public class Customer

@@ -24,25 +24,36 @@ public abstract class Handler
 		_successor = successor;
 	}
 
-	public string PassToOtherHandler(string request) =>
-		_successor != null
+	public string PassToOtherHandler(string request)
+	{
+		return _successor != null
 			? _successor.HandleRequest(request)
 			: request;
+	}
 
 	public abstract string HandleRequest(string request);
 }
 
 public class ConcreteHandlerA : Handler
 {
-	public override string HandleRequest(string request) => PassToOtherHandler(request + "A");
+	public override string HandleRequest(string request)
+	{
+		return PassToOtherHandler(request + "A");
+	}
 }
 
 public class ConcreteHandlerB : Handler
 {
-	public override string HandleRequest(string request) => PassToOtherHandler(request + "B");
+	public override string HandleRequest(string request)
+	{
+		return PassToOtherHandler(request + "B");
+	}
 }
 
 public class ConcreteHandlerC : Handler
 {
-	public override string HandleRequest(string request) => PassToOtherHandler(request + "C");
+	public override string HandleRequest(string request)
+	{
+		return PassToOtherHandler(request + "C");
+	}
 }

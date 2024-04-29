@@ -5,7 +5,7 @@ namespace ConsoleAppPatterns.Creational;
 /// <summary>
 /// Client.
 /// </summary>
-public class AbstractFactoryPattern
+public class AbstractFactory
 {
 	public void Main()
 	{
@@ -36,20 +36,38 @@ public interface IFactory
 
 public class ModernHouse : IFactory
 {
-	public IChair GetChair() => new ModernChair();
+	public IChair GetChair()
+	{
+		return new ModernChair();
+	}
 
-	public string GetName() => nameof(ModernHouse);
+	public string GetName()
+	{
+		return nameof(ModernHouse);
+	}
 
-	public ITable GetTable() => new ModernTable();
+	public ITable GetTable()
+	{
+		return new ModernTable();
+	}
 }
 
 public class OldHouse : IFactory
 {
-	public IChair GetChair() => new OldChair();
+	public IChair GetChair()
+	{
+		return new OldChair();
+	}
 
-	public string GetName() => nameof(OldHouse);
+	public string GetName()
+	{
+		return nameof(OldHouse);
+	}
 
-	public ITable GetTable() => new OldTable();
+	public ITable GetTable()
+	{
+		return new OldTable();
+	}
 }
 
 /// <summary>
@@ -62,12 +80,18 @@ public interface IChair
 
 public class ModernChair : IChair
 {
-	public string GetName() => nameof(ModernChair);
+	public string GetName()
+	{
+		return nameof(ModernChair);
+	}
 }
 
 public class OldChair : IChair
 {
-	public string GetName() => nameof(OldChair);
+	public string GetName()
+	{
+		return nameof(OldChair);
+	}
 }
 
 /// <summary>
@@ -80,10 +104,16 @@ public interface ITable
 
 public class ModernTable : ITable
 {
-	public string GetName() => nameof(ModernTable);
+	public string GetName()
+	{
+		return nameof(ModernTable);
+	}
 }
 
 public class OldTable : ITable
 {
-	public string GetName() => nameof(OldTable);
+	public string GetName()
+	{
+		return nameof(OldTable);
+	}
 }

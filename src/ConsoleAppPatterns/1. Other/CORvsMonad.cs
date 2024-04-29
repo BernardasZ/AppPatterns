@@ -22,12 +22,17 @@ public abstract class Handler<T>
 {
 	protected Handler<T> Successor;
 
-	public void SetSuccessor(Handler<T> successor) => Successor = successor;
+	public void SetSuccessor(Handler<T> successor)
+	{
+		Successor = successor;
+	}
 
-	public OperationResponse<T> PassToOtherHandler(OperationResponse<T> request) =>
-		Successor != null && request.Status == ResponseStatus.Success
+	public OperationResponse<T> PassToOtherHandler(OperationResponse<T> request)
+	{
+		return Successor != null && request.Status == ResponseStatus.Success
 			? Successor.HandleRequest(request)
 			: request;
+	}
 
 	public abstract OperationResponse<T> HandleRequest(OperationResponse<T> request);
 }
@@ -64,7 +69,10 @@ public class ChangeCatName : Handler<Cat>
 {
 	private readonly string _name;
 
-	public ChangeCatName(string name) => _name = name;
+	public ChangeCatName(string name)
+	{
+		_name = name;
+	}
 
 	public override OperationResponse<Cat> HandleRequest(OperationResponse<Cat> request)
 	{
@@ -141,8 +149,10 @@ public class HandlerUsingMonadFunction
 
 public static class SequentialCheck
 {
-	public static OperationResponse<T> Check<T>(this OperationResponse<T> item, Func<OperationResponse<T>, OperationResponse<T>> func) =>
-		item.Status == ResponseStatus.Success
+	public static OperationResponse<T> Check<T>(this OperationResponse<T> item, Func<OperationResponse<T>, OperationResponse<T>> func)
+	{
+		return item.Status == ResponseStatus.Success
 			? func(item)
 			: item;
+	}
 }

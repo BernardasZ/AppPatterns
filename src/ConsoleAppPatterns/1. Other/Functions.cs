@@ -27,7 +27,10 @@ public class Test
 
 	private static readonly Cat2 _cat;
 
-	static Test() => _cat = new Cat2();
+	static Test()
+	{
+		_cat = new Cat2();
+	}
 
 	public Test()
 	{
@@ -45,7 +48,7 @@ public class Test
 		}
 		catch (Exception ex)
 		{
-			Console.WriteLine(@ex);
+			Console.WriteLine(ex);
 		}
 	}
 
@@ -58,7 +61,7 @@ public class Test
 		}
 		catch (Exception ex)
 		{
-			Console.WriteLine(@ex);
+			Console.WriteLine(ex);
 		}
 	}
 }
@@ -67,21 +70,45 @@ public class CatService : IService<Cat2>
 {
 	private readonly IRepository<Cat2> _repository;
 
-	public CatService(IRepository<Cat2> repository) => _repository = repository;
+	public CatService(IRepository<Cat2> repository)
+	{
+		_repository = repository;
+	}
 
-	public async Task<GenericResponse<Cat2>> CreateAsync(Cat2 item) => await _repository.CreateAsync(item);
+	public async Task<GenericResponse<Cat2>> CreateAsync(Cat2 item)
+	{
+		return await _repository.CreateAsync(item);
+	}
 
-	public async Task<GenericResponse<Cat2>> DeleteAsync(Cat2 item) => await _repository.DeleteAsync(item);
+	public async Task<GenericResponse<Cat2>> DeleteAsync(Cat2 item)
+	{
+		return await _repository.DeleteAsync(item);
+	}
 
-	public async Task<GenericResponse<IEnumerable<Cat2>>> GetAllAsync() => await _repository.GetAllAsync();
+	public async Task<GenericResponse<IEnumerable<Cat2>>> GetAllAsync()
+	{
+		return await _repository.GetAllAsync();
+	}
 
-	public async Task<GenericResponse<Cat2>> GetAsync(long id) => await _repository.GetAsync(id);
+	public async Task<GenericResponse<Cat2>> GetAsync(long id)
+	{
+		return await _repository.GetAsync(id);
+	}
 
-	public async Task<GenericResponse<Cat2>> UpdateAsync(Cat2 item) => await _repository.UpdateAsync(item);
+	public async Task<GenericResponse<Cat2>> UpdateAsync(Cat2 item)
+	{
+		return await _repository.UpdateAsync(item);
+	}
 
-	public Task<GenericResponse<T>> WrapperAsync<T, U>(Func<U, Task<GenericResponse<T>>> func, U arg) => throw new NotImplementedException();
+	public Task<GenericResponse<T>> WrapperAsync<T, U>(Func<U, Task<GenericResponse<T>>> func, U arg)
+	{
+		throw new NotImplementedException();
+	}
 
-	public Task<GenericResponse<T>> WrapperAsync<T>(Func<Task<GenericResponse<T>>> func) => throw new NotImplementedException();
+	public Task<GenericResponse<T>> WrapperAsync<T>(Func<Task<GenericResponse<T>>> func)
+	{
+		throw new NotImplementedException();
+	}
 }
 
 public interface IService<TModel> where TModel : Animal
@@ -105,36 +132,62 @@ public class Service<TModel> : IService<TModel> where TModel : Animal, new()
 {
 	private readonly IRepository<TModel> _repository;
 
-	public Service(IRepository<TModel> repository) => _repository = repository;
+	public Service(IRepository<TModel> repository)
+	{
+		_repository = repository;
+	}
 
-	public virtual async Task<GenericResponse<TModel>> CreateAsync(TModel item) => await WrapperAsync(() => _repository.UpdateAsync(item));
+	public virtual async Task<GenericResponse<TModel>> CreateAsync(TModel item)
+	{
+		return await WrapperAsync(() => _repository.UpdateAsync(item));
+	}
 
-	public virtual async Task<GenericResponse<IEnumerable<TModel>>> GetAllAsync() => await WrapperAsync(() => _repository.GetAllAsync());
+	public virtual async Task<GenericResponse<IEnumerable<TModel>>> GetAllAsync()
+	{
+		return await WrapperAsync(() => _repository.GetAllAsync());
+	}
 
 	//public virtual async Task<GenericResponse<TModel>> GetAsync(long id) => await WrapperAsync(() => _repository.GetAsync(id));
 
 	//public virtual async Task<GenericResponse<TModel>> UpdateAsync(TModel item) => await WrapperAsync(() => _repository.UpdateAsync(item));
 
-	public virtual async Task<GenericResponse<TModel>> DeleteAsync(TModel item) => await WrapperAsync(() => _repository.DeleteAsync(item));
+	public virtual async Task<GenericResponse<TModel>> DeleteAsync(TModel item)
+	{
+		return await WrapperAsync(() => _repository.DeleteAsync(item));
+	}
 
-	public virtual async Task<GenericResponse<T>> WrapperAsync<T>(Func<Task<GenericResponse<T>>> func) => await func();
+	public virtual async Task<GenericResponse<T>> WrapperAsync<T>(Func<Task<GenericResponse<T>>> func)
+	{
+		return await func();
+	}
 
-	public Task<GenericResponse<T>> WrapperAsync<T, U>(Func<U, Task<GenericResponse<T>>> func, U arg) => throw new NotImplementedException();
+	public Task<GenericResponse<T>> WrapperAsync<T, U>(Func<U, Task<GenericResponse<T>>> func, U arg)
+	{
+		throw new NotImplementedException();
+	}
 
-	public async Task<GenericResponse<TModel>> GetAsync(long id) =>
-		await Task.FromResult(new GenericResponse<TModel> { Data = new TModel(), State = true });
+	public async Task<GenericResponse<TModel>> GetAsync(long id)
+	{
+		return await Task.FromResult(new GenericResponse<TModel> { Data = new TModel(), State = true });
+	}
 
-	public async Task<GenericResponse<TModel>> UpdateAsync(TModel item) =>
-		await Task.FromResult(new GenericResponse<TModel> { Data = item, State = true });
+	public async Task<GenericResponse<TModel>> UpdateAsync(TModel item)
+	{
+		return await Task.FromResult(new GenericResponse<TModel> { Data = item, State = true });
+	}
 
-	public async Task<GenericResponse<TModel>> ValidateAsync(TModel item) =>
-		await Task.FromResult(new GenericResponse<TModel> { Data = item, State = true });
+	public async Task<GenericResponse<TModel>> ValidateAsync(TModel item)
+	{
+		return await Task.FromResult(new GenericResponse<TModel> { Data = item, State = true });
+	}
 
-	public async Task DoSomethingAsync(int id) =>
+	public async Task DoSomethingAsync(int id)
+	{
 		_ = await GetAsync(id)
 			.Maybe(item => ValidateAsync(item.Data))
 			.Maybe(item => UpdateAsync(item.Data))
 			.Maybe(() => GetAsync(id));
+	}
 }
 
 public static class Monad
@@ -182,15 +235,31 @@ public class Repository<TModel> : IRepository<TModel> where TModel : Animal
 		_genericResponse = new GenericResponse<TModel>();
 	}
 
-	public virtual Task<GenericResponse<TModel>> CreateAsync(TModel item) => /*Task.FromResult(_genericResponse);*/ throw new Exception();
+	public virtual Task<GenericResponse<TModel>> CreateAsync(TModel item)
+	{
+		/*Task.FromResult(_genericResponse);*/
+		throw new Exception();
+	}
 
-	public virtual Task<GenericResponse<TModel>> DeleteAsync(TModel item) => Task.FromResult(_genericResponse);
+	public virtual Task<GenericResponse<TModel>> DeleteAsync(TModel item)
+	{
+		return Task.FromResult(_genericResponse);
+	}
 
-	public virtual Task<GenericResponse<IEnumerable<TModel>>> GetAllAsync() => Task.FromResult(_genericIenumerableResponse);
+	public virtual Task<GenericResponse<IEnumerable<TModel>>> GetAllAsync()
+	{
+		return Task.FromResult(_genericIenumerableResponse);
+	}
 
-	public virtual Task<GenericResponse<TModel>> GetAsync(long id) => Task.FromResult(_genericResponse);
+	public virtual Task<GenericResponse<TModel>> GetAsync(long id)
+	{
+		return Task.FromResult(_genericResponse);
+	}
 
-	public virtual Task<GenericResponse<TModel>> UpdateAsync(TModel item) => Task.FromResult(_genericResponse);
+	public virtual Task<GenericResponse<TModel>> UpdateAsync(TModel item)
+	{
+		return Task.FromResult(_genericResponse);
+	}
 }
 
 public class GenericResponse<T>
