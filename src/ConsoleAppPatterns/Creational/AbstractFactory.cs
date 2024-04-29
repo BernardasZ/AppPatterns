@@ -2,9 +2,6 @@
 
 namespace ConsoleAppPatterns.Creational;
 
-/// <summary>
-/// Client.
-/// </summary>
 public class AbstractFactory
 {
 	public void Main()
@@ -22,9 +19,6 @@ public class AbstractFactory
 	}
 }
 
-/// <summary>
-/// Abstract factory.
-/// </summary>
 public interface IFactory
 {
 	IChair GetChair();
@@ -70,9 +64,6 @@ public class OldHouse : IFactory
 	}
 }
 
-/// <summary>
-/// Abstract product.
-/// </summary>
 public interface IChair
 {
 	string GetName();
@@ -94,9 +85,6 @@ public class OldChair : IChair
 	}
 }
 
-/// <summary>
-/// Abstract product.
-/// </summary>
 public interface ITable
 {
 	string GetName();

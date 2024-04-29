@@ -1,4 +1,6 @@
-﻿namespace ConsoleAppPatterns.Structural;
+﻿using System;
+
+namespace ConsoleAppPatterns.Structural;
 
 public class FacadeMain
 {
@@ -25,32 +27,32 @@ public class Facade
 
 	public void Operation()
 	{
-		_systemA.DoSomethingA();
-		_systemB.DoSomethingB();
-		_systemC.DoSomethingC();
+		_systemA.DoSomething();
+		_systemB.DoSomething();
+		_systemC.DoSomething();
 	}
 }
 
 public class SubSystemA
 {
-	public void DoSomethingA()
+	public void DoSomething()
 	{
-		System.Console.WriteLine("Operation A");
+		Console.WriteLine($"{nameof(SubSystemA)}");
 	}
 }
 
 public class SubSystemB
 {
-	public void DoSomethingB()
+	public void DoSomething()
 	{
-		System.Console.WriteLine("Operation B");
+		Console.WriteLine($"{nameof(SubSystemB)}");
 	}
 }
 
 public class SubSystemC
 {
-	public void DoSomethingC()
+	public void DoSomething()
 	{
-		System.Console.WriteLine("Operation C");
+		Console.WriteLine($"{nameof(SubSystemC)}");
 	}
 }

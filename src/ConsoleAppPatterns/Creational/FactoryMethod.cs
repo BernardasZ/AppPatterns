@@ -4,9 +4,6 @@ using System.Text;
 
 namespace ConsoleAppPatterns.Creational;
 
-/// <summary>
-/// Client.
-/// </summary>
 public class FactoryMethod
 {
 	public void Main()
@@ -21,9 +18,6 @@ public class FactoryMethod
 	}
 }
 
-/// <summary>
-/// Product.
-/// </summary>
 public interface IPage
 {
 	string GetPageContent();
@@ -85,9 +79,6 @@ public class Summary : IPage
 	}
 }
 
-/// <summary>
-/// Creator.
-/// </summary>
 public abstract class Document
 {
 	public abstract List<IPage> CreateDocumentPages();

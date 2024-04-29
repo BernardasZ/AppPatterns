@@ -11,23 +11,23 @@ public class ChainOfResponsibility
 		handlerA.SetSuccessor(handlerB);
 		handlerB.SetSuccessor(handlerC);
 
-		_ = handlerA.HandleRequest("");
+		handlerA.HandleRequest(string.Empty);
 	}
 }
 
 public abstract class Handler
 {
-	protected Handler _successor;
+	protected Handler Successor;
 
 	public void SetSuccessor(Handler successor)
 	{
-		_successor = successor;
+		Successor = successor;
 	}
 
 	public string PassToOtherHandler(string request)
 	{
-		return _successor != null
-			? _successor.HandleRequest(request)
+		return Successor != null
+			? Successor.HandleRequest(request)
 			: request;
 	}
 
@@ -38,7 +38,7 @@ public class ConcreteHandlerA : Handler
 {
 	public override string HandleRequest(string request)
 	{
-		return PassToOtherHandler(request + "A");
+		return PassToOtherHandler($"{request} and {nameof(ConcreteHandlerA)}");
 	}
 }
 
@@ -46,7 +46,7 @@ public class ConcreteHandlerB : Handler
 {
 	public override string HandleRequest(string request)
 	{
-		return PassToOtherHandler(request + "B");
+		return PassToOtherHandler($"{request} and {nameof(ConcreteHandlerB)}");
 	}
 }
 
@@ -54,6 +54,6 @@ public class ConcreteHandlerC : Handler
 {
 	public override string HandleRequest(string request)
 	{
-		return PassToOtherHandler(request + "C");
+		return PassToOtherHandler($"{request} and {nameof(ConcreteHandlerC)}");
 	}
 }

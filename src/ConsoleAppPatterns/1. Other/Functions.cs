@@ -14,7 +14,7 @@ public class Function
 
 		var service = new Service<Cat2>(null);
 
-		_ = Task.FromResult(service.DoSomethingAsync(1));
+		Task.FromResult(service.DoSomethingAsync(1));
 	}
 }
 
@@ -183,7 +183,7 @@ public class Service<TModel> : IService<TModel> where TModel : Animal, new()
 
 	public async Task DoSomethingAsync(int id)
 	{
-		_ = await GetAsync(id)
+		await GetAsync(id)
 			.Maybe(item => ValidateAsync(item.Data))
 			.Maybe(item => UpdateAsync(item.Data))
 			.Maybe(() => GetAsync(id));
@@ -226,12 +226,12 @@ public interface IRepository<TModel> where TModel : Animal
 
 public class Repository<TModel> : IRepository<TModel> where TModel : Animal
 {
-	private static readonly GenericResponse<IEnumerable<TModel>> _genericIenumerableResponse;
+	private static readonly GenericResponse<IEnumerable<TModel>> _genericEnumerableResponse;
 	private static readonly GenericResponse<TModel> _genericResponse;
 
 	static Repository()
 	{
-		_genericIenumerableResponse = new GenericResponse<IEnumerable<TModel>>();
+		_genericEnumerableResponse = new GenericResponse<IEnumerable<TModel>>();
 		_genericResponse = new GenericResponse<TModel>();
 	}
 
@@ -248,7 +248,7 @@ public class Repository<TModel> : IRepository<TModel> where TModel : Animal
 
 	public virtual Task<GenericResponse<IEnumerable<TModel>>> GetAllAsync()
 	{
-		return Task.FromResult(_genericIenumerableResponse);
+		return Task.FromResult(_genericEnumerableResponse);
 	}
 
 	public virtual Task<GenericResponse<TModel>> GetAsync(long id)

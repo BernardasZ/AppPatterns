@@ -37,7 +37,7 @@ public class Bridge
 	{
 		public override void Execute()
 		{
-			Implementator.Execute("Bridge example A");
+			Implementator.Execute(nameof(AbstractionA));
 		}
 	}
 
@@ -45,7 +45,7 @@ public class Bridge
 	{
 		public override void Execute()
 		{
-			Implementator.Execute("Bridge example B");
+			Implementator.Execute(nameof(AbstractionB));
 		}
 	}
 
@@ -53,7 +53,7 @@ public class Bridge
 	{
 		public void Execute(string text)
 		{
-			Console.WriteLine($"{text} component implementation A");
+			Console.WriteLine($"{text} and {nameof(ConcreteImplementatornA)}");
 		}
 	}
 
@@ -61,7 +61,7 @@ public class Bridge
 	{
 		public void Execute(string text)
 		{
-			Console.WriteLine($"{text} component implementation B");
+			Console.WriteLine($"{text} and {nameof(ConcreteImplementatornB)}");
 		}
 	}
 }
