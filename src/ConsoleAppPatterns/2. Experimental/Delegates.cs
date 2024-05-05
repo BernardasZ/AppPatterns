@@ -1,7 +1,7 @@
 ﻿using System;
 using BenchmarkDotNet.Attributes;
 
-namespace ConsoleAppPatterns._2._Experimental;
+namespace ConsoleAppPatterns._2._Experimental.Delegates;
 
 [MemoryDiagnoser]
 public class Delegates

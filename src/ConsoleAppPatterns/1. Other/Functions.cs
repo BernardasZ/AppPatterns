@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
 
-namespace ConsoleAppPatterns._1._Other;
+namespace ConsoleAppPatterns._1._Other.Function;
 
 public class Function
 {

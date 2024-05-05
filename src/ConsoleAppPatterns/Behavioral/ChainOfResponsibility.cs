@@ -1,4 +1,4 @@
-﻿namespace ConsoleAppPatterns.Behavioral;
+﻿namespace ConsoleAppPatterns.Behavioral.ChainOfResponsibility;
 
 public class ChainOfResponsibility
 {

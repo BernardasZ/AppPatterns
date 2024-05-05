@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ConsoleAppPatterns.Structural;
+namespace ConsoleAppPatterns.Structural.Decorator;
 
 public class DecoratorMain
 {

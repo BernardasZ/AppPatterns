@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ConsoleAppPatterns._1._Other;
+namespace ConsoleAppPatterns._1._Other.CORvsMonad;
 
 public class ChainOfResponsibility
 {

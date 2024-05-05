@@ -1,107 +1,112 @@
 ﻿using System;
 
-namespace ConsoleAppPatterns.Creational;
+namespace ConsoleAppPatterns.Creational.AbstractFactory;
 
-public class AbstractFactory
+public class AbstractFactoryMain
 {
 	public void Main()
 	{
-		PrintHouse(new ModernHouse());
-		PrintHouse(new OldHouse());
+		var factoryA = new ConcreteFactoryA();
+		var clientA = new AbstractFactoryClient(factoryA);
+		clientA.Run();
+
+		Console.WriteLine();
+
+		var factoryB = new ConcreteFactoryB();
+		var clientB = new AbstractFactoryClient(factoryB);
+		clientB.Run();
+	}
+}
+
+public class AbstractFactoryClient
+{
+	private readonly IProductA _productA;
+	private readonly IProductB _productB;
+
+	public AbstractFactoryClient(IFactory factory)
+	{
+		_productA = factory.CreateProductA();
+		_productB = factory.CreateProductB();
 	}
 
-	public void PrintHouse(IFactory factory)
+	public void Run()
 	{
-		Console.WriteLine($"House type: {factory.GetName()}");
-		Console.WriteLine($"Chair type: {factory.GetChair().GetName()}");
-		Console.WriteLine($"Table type: {factory.GetTable().GetName()}");
-		Console.WriteLine();
+		Console.WriteLine(_productA.GetNameA());
+		Console.WriteLine(_productB.GetNameB());
 	}
 }
 
 public interface IFactory
 {
-	IChair GetChair();
+	IProductA CreateProductA();
 
-	string GetName();
-
-	ITable GetTable();
+	IProductB CreateProductB();
 }
 
-public class ModernHouse : IFactory
+public class ConcreteFactoryA : IFactory
 {
-	public IChair GetChair()
+	public IProductA CreateProductA()
 	{
-		return new ModernChair();
+		return new ProductA1();
 	}
 
-	public string GetName()
+	public IProductB CreateProductB()
 	{
-		return nameof(ModernHouse);
-	}
-
-	public ITable GetTable()
-	{
-		return new ModernTable();
+		return new ProductB1();
 	}
 }
 
-public class OldHouse : IFactory
+public class ConcreteFactoryB : IFactory
 {
-	public IChair GetChair()
+	public IProductA CreateProductA()
 	{
-		return new OldChair();
+		return new ProductA2();
 	}
 
-	public string GetName()
+	public IProductB CreateProductB()
 	{
-		return nameof(OldHouse);
-	}
-
-	public ITable GetTable()
-	{
-		return new OldTable();
+		return new ProductB2();
 	}
 }
 
-public interface IChair
+public interface IProductA
 {
-	string GetName();
+	string GetNameA();
 }
 
-public class ModernChair : IChair
+public interface IProductB
 {
-	public string GetName()
+	string GetNameB();
+}
+
+public class ProductA1 : IProductA
+{
+	public string GetNameA()
 	{
-		return nameof(ModernChair);
+		return nameof(ProductA1);
 	}
 }
 
-public class OldChair : IChair
+public class ProductA2 : IProductA
 {
-	public string GetName()
+	public string GetNameA()
 	{
-		return nameof(OldChair);
+		return nameof(ProductA2);
 	}
 }
 
-public interface ITable
+public class ProductB1 : IProductB
 {
-	string GetName();
-}
-
-public class ModernTable : ITable
-{
-	public string GetName()
+	public string GetNameB()
 	{
-		return nameof(ModernTable);
+		return nameof(ProductB1);
 	}
 }
 
-public class OldTable : ITable
+public class ProductB2 : IProductB
 {
-	public string GetName()
+	public string GetNameB()
 	{
-		return nameof(OldTable);
+		return nameof(ProductB2);
 	}
 }

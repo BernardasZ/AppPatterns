@@ -1,7 +1,7 @@
 ﻿using System;
 using BenchmarkDotNet.Running;
-using ConsoleAppPatterns._2._Experimental;
-using ConsoleAppPatterns.Structural;
+using ConsoleAppPatterns._2._Experimental.Delegates;
+using ConsoleAppPatterns.Creational.Builder;
 
 namespace ConsoleAppPatterns;
 
@@ -38,6 +38,6 @@ internal class Program
 
 	private static void RunOther()
 	{
-		new DecoratorMain().Main();
+		new BuilderMain().Main();
 	}
 }

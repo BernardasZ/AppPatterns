@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ConsoleAppPatterns.Behavioral;
+namespace ConsoleAppPatterns.Behavioral.Strategy;
 
 public class Strategy
 {

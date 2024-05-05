@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ConsoleAppPatterns.Structural;
+namespace ConsoleAppPatterns.Structural.Facade;
 
 public class FacadeMain
 {
