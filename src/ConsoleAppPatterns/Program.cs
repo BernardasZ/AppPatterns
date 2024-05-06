@@ -1,7 +1,7 @@
 ﻿using System;
 using BenchmarkDotNet.Running;
 using ConsoleAppPatterns._2._Experimental.Delegates;
-using ConsoleAppPatterns.Creational.Builder;
+using ConsoleAppPatterns.Structural.Proxy;
 
 namespace ConsoleAppPatterns;
 
@@ -14,13 +14,13 @@ internal class Program
 
 		try
 		{
-			if (option.ToLower() == "Y")
+			if (option.ToLower() != "Y")
 			{
-				RunBenchmark();
+				RunOther();
 			}
 			else
 			{
-				RunOther();
+				RunBenchmark();
 			}
 		}
 		catch (Exception ex)
@@ -38,6 +38,6 @@ internal class Program
 
 	private static void RunOther()
 	{
-		new BuilderMain().Main();
+		new ProxyMain().Main();
 	}
 }
